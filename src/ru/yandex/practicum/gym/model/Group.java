@@ -1,11 +1,8 @@
-package ru.yandex.practicum.gym;
+package ru.yandex.practicum.gym.model;
 
 public class Group {
-    //название группы
     private String title;
-    //тип (взрослая или детская)
     private Age age;
-    //длительность (в минутах)
     private int duration;
 
     public Group(String title, Age age, int duration) {
@@ -24,5 +21,14 @@ public class Group {
 
     public int getDuration() {
         return duration;
+    }
+
+    @Override
+    public String toString() {
+        return "Группа{" +
+                "Название='" + title + '\'' +
+                ", возрастная группа=" + age +
+                ", длительность=" + duration +
+                '}';
     }
 }

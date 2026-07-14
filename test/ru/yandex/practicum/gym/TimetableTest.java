@@ -1,9 +1,11 @@
 package ru.yandex.practicum.gym;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.yandex.practicum.gym.model.*;
 
-import java.util.*;
+import java.util.function.BooleanSupplier;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TimetableTest {
 
@@ -19,7 +21,9 @@ public class TimetableTest {
         timetable.addNewTrainingSession(singleTrainingSession);
 
         //Проверить, что за понедельник вернулось одно занятие
+        timetable.getTrainingSessionsForDay(DayOfWeek.MONDAY);
         //Проверить, что за вторник не вернулось занятий
+        timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY);
     }
 
     @Test
