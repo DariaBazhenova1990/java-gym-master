@@ -40,6 +40,6 @@ public class TimeOfDay implements Comparable<TimeOfDay> {
 
     @Override
     public String toString() {
-        return "Время: " + hours + ":" + minutes;
+        return "Время='" + hours + ":" + minutes + "'";
     }
 }

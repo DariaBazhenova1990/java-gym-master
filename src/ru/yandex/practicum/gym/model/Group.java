@@ -26,9 +26,9 @@ public class Group {
     @Override
     public String toString() {
         return "Группа{" +
-                "Название='" + title + '\'' +
-                ", возрастная группа=" + age +
-                ", длительность=" + duration +
+                "название='" + title + '\'' +
+                ", возрастная группа='" + age + '\'' +
+                ", длительность='" + duration + '\'' +
                 '}';
     }
 }

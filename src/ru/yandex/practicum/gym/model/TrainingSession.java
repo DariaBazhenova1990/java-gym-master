@@ -32,10 +32,11 @@ public class TrainingSession {
     @Override
     public String toString() {
         return "Тренировка{" +
-                "День недели: " + dayOfWeek +
-                ", " + timeOfDay +
+                "День недели='" + dayOfWeek +
+                "', " + timeOfDay +
                 ", " + group +
                 ", " + coach +
                 '}';
     }
+
 }

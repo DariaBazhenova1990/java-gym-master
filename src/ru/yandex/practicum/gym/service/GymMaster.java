@@ -5,46 +5,36 @@ import ru.yandex.practicum.gym.model.*;
 import java.util.Scanner;
 
 public class GymMaster {
-    private static final Scanner scanner = new Scanner(System.in);
-
+    public static final Scanner scanner = new Scanner(System.in);
     static Timetable timetable = new Timetable();
-    static Coach coach = new Coach("Васильев", "Николай", "Сергеевич");
-    static Group groupAdult = new Group("Акробатика для взрослых", Age.ADULT, 90);
-    static TrainingSession thursdayAdultTrainingSession = new TrainingSession(groupAdult, coach,
-            DayOfWeek.THURSDAY, new TimeOfDay(20, 0));
-    static Group groupChild = new Group("Акробатика для детей", Age.CHILD, 60);
-    static TrainingSession mondayChildTrainingSession = new TrainingSession(groupChild, coach,
-            DayOfWeek.MONDAY, new TimeOfDay(13, 0));
-    static TrainingSession thursdayChildTrainingSession = new TrainingSession(groupChild, coach,
-            DayOfWeek.THURSDAY, new TimeOfDay(13, 0));
-    static TrainingSession saturdayChildTrainingSession = new TrainingSession(groupChild, coach,
-            DayOfWeek.SATURDAY, new TimeOfDay(10, 0));
+    static DayOfWeek day;
+    static TimeOfDay time;
+    static ConsoleInput consoleInput = new ConsoleInput();
 
     public static void main(String[] args) {
         boolean running = true;
         while (running) {
             showMenu();
             String input = scanner.nextLine();
-            if (input.isEmpty()) {
-                System.out.println("Ввод не должен быть пустым.");
-                return;
-            }
-
+            if (consoleInput.checkEmpty(input)) return;
             int choice = Integer.parseInt(input);
 
             switch (choice) {
                 case 1:
-                    timetable.addNewTrainingSession(thursdayAdultTrainingSession);
-                    timetable.addNewTrainingSession(mondayChildTrainingSession);
-                    timetable.addNewTrainingSession(thursdayChildTrainingSession);
-                    timetable.addNewTrainingSession(saturdayChildTrainingSession);
+                    TrainingSession session = consoleInput.setSession();
+                    timetable.addNewTrainingSession(session);
                     break;
                 case 2:
-                    System.out.println(timetable.getTrainingSessionsForDay(DayOfWeek.THURSDAY));
+                    day = consoleInput.setDayOfWeek();
+                    Printer.print(timetable.getTrainingSessionsForDay(day));
                     break;
                 case 3:
-                    System.out.println(timetable
-                            .getTrainingSessionsForDayAndTime(DayOfWeek.THURSDAY, new TimeOfDay(20, 0)));
+                    day = consoleInput.setDayOfWeek();
+                    time = consoleInput.setTimeOfDay();
+                    Printer.print(timetable.getTrainingSessionsForDayAndTime(day, time));
+                    break;
+                case 4:
+                    Printer.print(timetable.getCountByCoaches());
                     break;
                 case 0:
                     running = false;
@@ -61,6 +51,7 @@ public class GymMaster {
         System.out.println("1 — Добавить новую тренировку в расписание");
         System.out.println("2 — Получить все тренировки за конкретный день");
         System.out.println("3 — Получить все тренировки за конкретный день и конкретное время");
+        System.out.println("4 — Посчитать тренировки у разных тренеров");
         System.out.println("0 — Завершить");
         System.out.print("Ваш выбор: ");
     }
