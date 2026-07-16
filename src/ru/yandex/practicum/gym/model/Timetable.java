@@ -26,7 +26,7 @@ public class Timetable {
 
     public ArrayList<TrainingSession> getTrainingSessionsForDayAndTime(DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {
         TreeMap<TimeOfDay, ArrayList<TrainingSession>> daySchedule = getTrainingSessionsForDay(dayOfWeek);
-        if(daySchedule == null) return null;
+        if (daySchedule == null) return null;
         return daySchedule.get(timeOfDay);
     }
 
