@@ -26,12 +26,13 @@ public class Timetable {
 
     public ArrayList<TrainingSession> getTrainingSessionsForDayAndTime(DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {
         TreeMap<TimeOfDay, ArrayList<TrainingSession>> daySchedule = getTrainingSessionsForDay(dayOfWeek);
+        if(daySchedule == null) return null;
         return daySchedule.get(timeOfDay);
     }
 
 
-    public List<Map.Entry<Coach, Integer>> getCountByCoaches() {
-        Map<Coach, Integer> statistics = new HashMap<>();
+    public LinkedHashMap<Coach, Integer> getCountByCoaches() {
+        LinkedHashMap<Coach, Integer> statistics = new LinkedHashMap<>();
 
         for (TreeMap<TimeOfDay, ArrayList<TrainingSession>> allDaysSessions : timetable.values()) {
             for (ArrayList<TrainingSession> sessionList : allDaysSessions.values()) {
@@ -50,7 +51,13 @@ public class Timetable {
             }
         });
 
-        return list;
+        statistics.clear();
+
+        for (Map.Entry<Coach, Integer> entry : list) {
+            statistics.put(entry.getKey(), entry.getValue());
+        }
+
+        return statistics;
     }
 
 }
