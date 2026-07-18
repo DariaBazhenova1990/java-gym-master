@@ -35,7 +35,7 @@ public class TrainingSessionsForDayAndTimeTest {
         timetable.addNewTrainingSession(singleTrainingSession);
 
         //Проверить, что за вторник не вернулось занятий
-        assertNull(timetable.getTrainingSessionsForDayAndTime(DayOfWeek.TUESDAY, time),
+        assertTrue(timetable.getTrainingSessionsForDayAndTime(DayOfWeek.TUESDAY, time).isEmpty(),
                 "Количество тренировок отличается от ожидаемого.");
     }
 
@@ -51,7 +51,7 @@ public class TrainingSessionsForDayAndTimeTest {
         timetable.addNewTrainingSession(singleTrainingSession);
 
         //Проверить, что за другое время не вернулось занятий
-        assertNull(timetable.getTrainingSessionsForDayAndTime(day, new TimeOfDay(14, 0)),
+        assertTrue(timetable.getTrainingSessionsForDayAndTime(day, new TimeOfDay(14, 0)).isEmpty(),
                 "Количество тренировок отличается от ожидаемого.");
     }
 
@@ -82,7 +82,8 @@ public class TrainingSessionsForDayAndTimeTest {
 
         // Проверить, что вернулось два занятия
         int countMultipleSessionsPerSlot = timetable.getTrainingSessionsForDayAndTime(DayOfWeek.THURSDAY, time).size();
-        assertEquals(2, countMultipleSessionsPerSlot, "Количество тренировок отличается от ожидаемого.");
+        assertEquals(2, countMultipleSessionsPerSlot,
+                "Количество тренировок отличается от ожидаемого.");
 
     }
 

@@ -21,13 +21,13 @@ public class Timetable {
     }
 
     public TreeMap<TimeOfDay, ArrayList<TrainingSession>> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
-        return timetable.get(dayOfWeek);
+        return timetable.getOrDefault(dayOfWeek, new TreeMap<>());
     }
 
     public ArrayList<TrainingSession> getTrainingSessionsForDayAndTime(DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {
         TreeMap<TimeOfDay, ArrayList<TrainingSession>> daySchedule = getTrainingSessionsForDay(dayOfWeek);
-        if (daySchedule == null) return null;
-        return daySchedule.get(timeOfDay);
+        if (daySchedule.isEmpty()) return new ArrayList<>();
+        return daySchedule.getOrDefault(timeOfDay, new ArrayList<>());
     }
 
 

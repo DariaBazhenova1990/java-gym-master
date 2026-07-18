@@ -6,8 +6,7 @@ import ru.yandex.practicum.gym.model.*;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TrainingSessionsForDayTest {
 
@@ -40,7 +39,7 @@ public class TrainingSessionsForDayTest {
         timetable.addNewTrainingSession(singleTrainingSession);
 
         //Проверить, что за вторник не вернулось занятий
-        assertNull(timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY),
+        assertTrue(timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY).isEmpty(),
                 "Количество тренировок отличается от ожидаемого.");
     }
 
@@ -109,9 +108,11 @@ public class TrainingSessionsForDayTest {
         int countSingleSessions = timetable.getTrainingSessionsForDay(DayOfWeek.MONDAY).size();
         assertEquals(1, countSingleSessions, "Количество тренировок отличается от ожидаемого.");
         // Проверить, что за четверг вернулось два занятия
-        TreeMap<TimeOfDay, ArrayList<TrainingSession>> multipleSessions = timetable.getTrainingSessionsForDay(DayOfWeek.THURSDAY);
+        TreeMap<TimeOfDay, ArrayList<TrainingSession>> multipleSessions =
+                timetable.getTrainingSessionsForDay(DayOfWeek.THURSDAY);
         int countMultipleSessionsPerSlot = multipleSessions.get(time).size();
-        assertEquals(2, countMultipleSessionsPerSlot, "Количество тренировок отличается от ожидаемого.");
+        assertEquals(2, countMultipleSessionsPerSlot,
+                "Количество тренировок отличается от ожидаемого.");
 
     }
 
