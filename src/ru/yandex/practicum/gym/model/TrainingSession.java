@@ -1,14 +1,9 @@
-package ru.yandex.practicum.gym;
+package ru.yandex.practicum.gym.model;
 
 public class TrainingSession {
-
-    //группа
     private Group group;
-    //тренер
     private Coach coach;
-    //день недели
     private DayOfWeek dayOfWeek;
-    //время начала занятия
     private TimeOfDay timeOfDay;
 
     public TrainingSession(Group group, Coach coach, DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {
@@ -33,4 +28,15 @@ public class TrainingSession {
     public TimeOfDay getTimeOfDay() {
         return timeOfDay;
     }
+
+    @Override
+    public String toString() {
+        return "Тренировка{" +
+                "День недели='" + dayOfWeek +
+                "', " + timeOfDay +
+                ", " + group +
+                ", " + coach +
+                '}';
+    }
+
 }
